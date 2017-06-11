@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--
+    Autor:      Rosa María González Pérez
+    Fecha:      Junio 2017
+    Licencia:   GPL v3
+    Versión:    1.0
+    Descripción:  Indice Pedaleando
+
+    Copyright (C) 2017  Rosa María González Pérez
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+
+<head>
+    <!--  -->
+    <title>Pedaleando | Inicio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- scripts -->
+    <script src="js/vendor/jquery/jquery.js" type="text/javascript"></script>
+    <script src="js/vendor/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
+    <!--  cookiebar y cookies -->
+    <script src="js/cookies.js" type="text/javascript"></script>
+    <script src="lib/jquery/cookiebar/jquery.cookiebar.js" type="text/javascript"></script>
+    <link href="lib/jquery/cookiebar/jquery.cookiebar.css" rel="stylesheet" type="text/css" />
+    <script src="lib/js/js.cookie.js" type="text/javascript"></script>
+
+    <!-- stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="fonts/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="lib/jquery/cookiebar/jquery.cookiebar.css" rel="stylesheet" type="text/css" />
+
+    <!-- personal (favicon, stylesheets, scripts) -->
+    <link rel="shortcut icon" href="img/favicon/bicy_verde.png">
+    <link href="css/nuevoBasico.css" rel="stylesheet" type="text/css" />
+    <link href="css/politicas.css" rel="stylesheet" type="text/css" />
+    <link href="css/formularios.css" rel="stylesheet" type="text/css" />
+
+    <!-- js/jq -->
+    <script src="js/cookies.js" type="text/javascript"></script>
+    <script src="js/login.js" type="text/javascript"></script>
+    <script src="js/registroEjercicios.js" type="text/javascript"></script>
+    <script src="js/registroPesos.js" type="text/javascript"></script>
+    <script src="js/registroUsuario.js" type="text/javascript"></script>
+    <script src="js/reportEjercicios.js" type="text/javascript"></script>
+    <script src="js/reportPesos.js" type="text/javascript"></script>
+
+    <style>
+
+    </style>
+    <!--Funciones que se cargan en cuanto está la página "ready"-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //funcion para cargar la barra de cookies
+            $.cookieBar({});
+            //funcion para login / logout del usuario
+            muestraLogin();
+            $("#btnSalir").click(function() {
+                eliminaCookies();
+                location.href = "index.html";
+            });
+            // funcion para la activación y animación de la web
+            $(window).scroll(function() {
+                $(".slideanim").each(function() {
+                    var pos = $(this).offset().top;
+                    var winTop = $(window).scrollTop();
+                    if (pos < winTop + 600) {
+                        $(this).addClass("slide");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>                        
+              </button>
+                <!--<a class="navbar-brand" href="#">WebSiteName</a>-->
+                <a class="navbar-brand-inline" id="logo" href="#myPage">
+                    <img src="img/favicon/favicon_png.png" alt="" style="width: 100px; height: 50px;"><br>Pedaleando MTB
+                </a>
+            </div>
+
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+
+                <ul class="nav navbar-nav" style="margin-top: 20px;">
+                    <li><a href="index.html"><span class="glyphicon glyphicon-home"></span> HOME</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Datos de Actividades<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="registroEjercicios.html">Registro Ejercicio</a></li>
+                            <li><a href="reportEjercicios.html">Listado ejercicios registrados</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="mejoraFisica.html"><span class="glyphicon glyphicon-bullhorn"></span> Indices de Mejora Física</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Datos de Pesos<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="registroPesos.html">Registro Peso</a></li>
+                            <li><a href="reportPesos.html">Listado pesos registrados</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right" style="margin-top: 20px;">
+                    <ul id="userLogueado" class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> BIENVENIDO <strong id="user"></strong>!!<span id="id_usuario" class="ocultar"></span><br></a></li>
+                        <li><a href="#" id="btnSalir"><span class="glyphicon glyphicon-log-out"></span> SALIR</a></li>
+                    </ul>
+                    <ul id="loginEntradaUser" class="nav navbar-nav navbar-right">
+                        <li><a href="registroUsuario.html"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
+                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> ENTRAR</a></li>
+                    </ul>
+                </ul>
+
+            </div>
+    </nav>
+    <!-- FIN NAVBAR  -->
+
+    <!-- CONTENIDO PAGINA  -->
+    <main>
+        <div class="container grey">
+            <div class="row-fluid">
+                <h1 class="title-pag">Política de Cookies</h1><br>
+                <dl class="row bg_grey">
+                    <dt class="col-sm-3 title-point"><h3><b>¿Qué son las cookies?</b></h3></dt>
+                    <blockquote>
+                        <dd class="col-sm-9 mb-0 text-justify">
+                            <p>Las cookies son ficheros o porciones de información enviadas por un sitio web a través de un servidor y almacenadas en el navegador del usuario. De ésta forma, el sitio web puede almacenar información básica del usuario y sus
+                                preferencias y hábitos con el fin de llevar a cabo determinadas acciones de marketing (como una campaña de remarketing) o personalización de contenidos.</p>
+                        </dd>
+                    </blockquote>
+                </dl>
+                <dl class="row bg_grey">
+                    <hr>
+                    <dt class="col-sm-3 title-point"><h3><b>¿Qué tipo de cookies existen?</b></h3></dt>
+                    <blockquote>
+                        <dd class="col-sm-9 mb-1 text-justify">
+                            <p>Ni todas las cookies son iguales, ni todos los “sites” utilizan las mismas cookies, ni todas están reguladas de la misma forma. De hecho, sólo las publicitarias, las de afiliados y las de análisis requieren del cumplimiento
+                                de la nueva normativa europea.</p>
+                            <br>
+                            <dl class="row">
+                                <dt class="col-sm-3">Cookies técnicas:</dt>
+                                <dd class="col-sm-9">
+                                    Son aquellas que resultan imprescindibles para permitir al usuario la navegación a través de una página web, como por ejemplo, las que permiten almacenar los datos de un pedido online.
+                                </dd>
+                                <dt class="col-sm-3">Cookies de personalización:</dt>
+                                <dd class="col-sm-9">
+                                    Este tipo permite personalizar las funciones o contenidos del sitio web en función de los datos obtenidos del navegador. Mediante estas cookies podemos presentar un sitio web en el mismo idioma del navegador usado para visitar la web.
+                                </dd>
+                                <dt class="col-sm-3">Cookies de análisis:</dt>
+                                <dd class="col-sm-9">
+                                    Se utilizan con fines estadísticos únicamente. Un claro ejemplo podría ser las cookies generadas por el script de seguimiento de Google Analytics. <br>
+                                </dd>
+                                <dt class="col-sm-3">Cookies publicitarias y de publicidad comportamental:</dt>
+                                <dd class="col-sm-9">
+                                    Son todas aquellas que tienen como objetivo mejorar la eficacia de los espacios publicitarios. Así, la red publicitaria de Google o los adservers incluyen este tipo de tecnologías para dar el servicio deseado a sus clientes.
+                                </dd>
+                                <dt class="col-sm-3">Cookies de afiliados:</dt>
+                                <dd class="col-sm-9">
+                                    Trackean las visitas de webs de afiliado.
+                                </dd>
+                            </dl>
+                        </dd>
+                    </blockquote>
+                </dl>
+                <dl class="row bg_grey">
+                    <hr>
+                    <dt class="col-sm-3 title-point">
+            <h3><b><b>¿Quién debe cumplir con ley de cookies?</b></b></h3></dt>
+                    <blockquote>
+                        <dd class="col-sm-9 mb-3 text-justify">
+                            <p> La ley de cookies es de aplicación a los prestadores de servicios de la sociedad de la información (tanto empresas como particulares que que realizan actividades económicas a través de Internet) establecidos en España y a los
+                                servicios prestados por ellos. De ésta forma, se incluyen los siguientes servicios cuando constituyan una actividad económica o lucrativa para el prestador: <br>
+                                <ol class="tabulacion" style="list-style-type: square">
+                                    <li>Comercio Electrónico</li>
+                                    <li>Contratación en línea</li>
+                                    <li>Información y publicidad</li>
+                                    <li>Servicios de intermediación</li>
+                                </ol>
+                        </dd>
+                    </blockquote>
+                </dl>
+                <dl class="row bg_grey">
+                    <hr>
+                    <dt class="col-sm-3 title-point"><h3><b>¿Qué hay que hacer para cumplir con la nueva normativa de cookies?</b></h3></dt>
+                    <blockquote class="blockquote ">
+                        <dd class="col-sm-9 mb-1 text-justify">
+                            <p>Como ya hemos mencionado antes, para cumplir con la ley de cookies es necesario recabar del usuario el consentimiento previo e informado antes de la instalación de cookies en su navegador. Muchos sites siguen informando del
+                                uso de cookies después de haber procedido a su instalación, lo que actualmente va en contra de la ley y puede incurrir en un procedimiento sancionador con multas que pueden ir de los 30.000€ a los 150.000€.</p>
+
+                            <p>Por ello, es importante contar con un procedimiento, que se ejecute a través de un pop-up, una landing page o visible en la cabecera o en el footer de tu web, en el que:</p>
+
+                            <ol class="tabulacion" style="list-style-type: square">
+                                <li>Se informe de manera visible, accesible y sin necesidad de hacer scroll de uso y política de cookies del site.</li>
+                                <li>Utilices una fórmula en la que recabes el consentimiento previo informado del usuario que visita tu página antes de instalar cualquier archivo para recabar información.</li>
+                                <li>Expliques qué es una cookie, el tipo de cookies que está utilizando tu sitio web y la finalidad de las mismas</li>
+                                <li>Proveas a tus usuarios de instrucciones sobre cómo deshabilitar las cookies desde los diferentes navegadores existentes.</li>
+                                <li>Ofrezcas referencias sobre lugares en los que conseguir más información.</li>
+                            </ol>
+                        </dd>
+                    </blockquote>
+                </dl>
+                <dl class="row bg_grey">
+                    <blockquote>
+                        <p class="col-sm-3 title-point text-center">
+                            <h3><b>Fin del documento <span class="glyphicon glyphicon-thumbs-up"></span> </b></h3>
+                        </p>
+                    </blockquote>
+                </dl>
+            </div>
+        </div>
+    </main>
+    <!-- fin contenido pag -->
+
+    <!--  FOOTER  -->
+    <footer class="container-fluid text-center" style="padding-bottom: 30px;padding-top: 30px;">
+        <a href="#myPage" title="To Top">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+        <div class="rows">
+            <div class="col-lg-4 col-md-4">
+                <a href="index.html">
+                    <img src="img/favicon/favicon_png.png" alt="" style="width: 100px; height: 100px;" /><br>
+                    <h3 class="titulo-footer" style="text-align: center;">Pedaleando MTB</h3>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-2">
+                <h3 class="titulo-footer" style="text-align: left;"> Contactanos</h3>
+
+                <div class=" " style="text-align: left;">
+                    <a href="https://www.google.es/maps/place/Parque+Central/@40.6071678,-3.7095962,17z/data=!3m1!4b1!4m5!3m4!1s0xd43d502d7f151c3:0x12a4e4d6e452ac8a!8m2!3d40.6071637!4d-3.7074075"><span class="glyphicon glyphicon-map-marker"></span>Parque Central. Tres Cantos<br></a>
+
+                    <span class="glyphicon glyphicon-envelope "></span>
+                    <a href="mailto:info@Pedaleandomtb.com"> info@Pedaleandomtb.com</a>
+                    <br>
+                    <span class="glyphicon glyphicon-comment"></span>
+                    <a href="registroContacto.html">Contacto</a><br>
+                    <span class="glyphicon glyphicon-phone"> </span><a href="skype:echo123?call"> +34 686192177</a><br>
+                    <span class="glyphicon glyphicon-phone-alt"></span> +34 91 804 43 72
+
+                </div>
+            </div>
+            <!--  -->
+            <div class="col-lg-3 col-md-3">
+                <h3 class="titulo-footer" style="text-align: center;">Redes Sociales</h3>
+                <ul style="list-style-type:none">
+                    <li>
+                        <a href="#" class="col-lg-6"><span class="fa fa-facebook-square fa-3x"></span> </a>
+                        <a href="#" class="col-lg-6"><span class="fa fa-twitter-square fa-3x"></span> </a>
+                    </li>
+                    <li>
+                        <a href="#" class="col-lg-6"><span class="fa fa-instagram fa-3x" aria-hidden="true"></span> </a>
+                        <a href="#" class="col-lg-6"><span class="fa fa-youtube-square fa-3x" aria-hidden="true"></span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--  -->
+            <div class="col-lg-3 col-md-3">
+                <h3 class="titulo-footer" style="text-align: left;">Links útiles</h3>
+
+                <div class="col-lg-6" style="text-align: left;">
+                    <a href="politicaCookies.html "> <span class="glyphicon glyphicon-question-sign"></span> Política Cookies</a><br>
+                    <a href="politicaPrivacidad.html"><span class="glyphicon glyphicon-question-sign"></span>Política Privacidad</a><br>
+                    <a href="#mapaWeb" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Mapa Web</a><br>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="rows">
+            <div class="col-lg-12">
+                <hr>
+                <p>Web Design & Development by Rosa María González Pérez, © Junio 2017, All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--  Ventana modal del mapa web -->
+    <div class="modal fade" id="mapaWeb" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Mapa web</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <h2></h2>
+                        <ul class="col-lg-5 col-lg-offset-2">
+                            <li><a href="index.html">Home </a></li>
+                            <br>
+                            <li><a href="registroEjercicios.html">Registro de Ejercicios</a></li>
+                            <li><a href="reportEjercicios.html">Listado de Ejercicios realizados</a></li>
+                            <br>
+                            <li><a href="registroPesos.html">Registro de Pesos</a></li>
+                            <li><a href="reportPesos.html">Listado de pesos registrados</a></li>
+                            <br>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="registroUsuario.html">Registrate</a></li>
+                            <br>
+                            <li><a href="registroContacto.html">Contacto</a></li>
+                            <li><a href="politicaCookies.html">Politica Cookies</a></li>
+                            <li><a href="politicaPrivacidad.html">Politica Privacidad</a></li>
+                            <li> <a href="#mapaWeb" data-toggle="modal">Mapa Web</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"> Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+-- creacion de bbdd pedaleando --
+CREATE DATABASE IF NOT EXISTS `pedaleando`;
+USE `pedaleando`;
+
+-- creacion tabla usuarios --

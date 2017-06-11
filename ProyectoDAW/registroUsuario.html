@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--
+    Autor:      Rosa María González Pérez
+    Fecha:      Junio 2017
+    Licencia:   GPL v3
+    Versión:    1.0
+    Descripción:  Indice Pedaleando
+
+    Copyright (C) 2017  Rosa María González Pérez
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+
+<head>
+    <!--  -->
+    <title>Pedaleando | Inicio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- scripts -->
+    <script src="js/vendor/jquery/jquery.js" type="text/javascript"></script>
+    <script src="js/vendor/jquery-1.11.2.js" type="text/javascript"></script>
+    <script src="js/vendor/bootstrap.min.js" type="text/javascript"></script>
+    <!--  cookiebar y cookies -->
+    <script src="js/cookies.js" type="text/javascript"></script>
+    <script src="lib/jquery/cookiebar/jquery.cookiebar.js" type="text/javascript"></script>
+    <link href="lib/jquery/cookiebar/jquery.cookiebar.css" rel="stylesheet" type="text/css" />
+    <script src="lib/js/js.cookie.js" type="text/javascript"></script>
+
+    <!-- stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="fonts/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="lib/jquery/cookiebar/jquery.cookiebar.css" rel="stylesheet" type="text/css" />
+
+    <!-- personal (favicon, stylesheets, scripts) -->
+    <link rel="shortcut icon" href="img/favicon/bicy_verde.png">
+    <link href="css/nuevoBasico.css" rel="stylesheet" type="text/css" />
+    <link href="css/politicas.css" rel="stylesheet" type="text/css" />
+    <link href="css/formularios.css" rel="stylesheet" type="text/css" />
+
+    <!-- js/jq -->
+    <script src="js/cookies.js" type="text/javascript"></script>
+    <script src="js/login.js" type="text/javascript"></script>
+    <script src="js/registroContacto.js" type="text/javascript"></script>
+    <script src="js/registroEjercicios.js" type="text/javascript"></script>
+    <script src="js/registroPesos.js" type="text/javascript"></script>
+    <script src="js/registroUsuario.js" type="text/javascript"></script>
+    <script src="js/reportEjercicios.js" type="text/javascript"></script>
+    <script src="js/reportPesos.js" type="text/javascript"></script>
+
+    <style>
+
+    </style>
+    <!--Funciones que se cargan en cuanto está la página "ready"-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //funcion para cargar la barra de cookies
+            $.cookieBar({});
+            //funcion para login / logout del usuario
+            muestraLogin();
+            $("#btnSalir").click(function() {
+                eliminaCookies();
+                location.href = "index.html";
+            });
+            // funcion para la activación y animación de la web
+            $(window).scroll(function() {
+                $(".slideanim").each(function() {
+                    var pos = $(this).offset().top;
+                    var winTop = $(window).scrollTop();
+                    if (pos < winTop + 600) {
+                        $(this).addClass("slide");
+                    }
+                });
+            });
+            //funcion para inicio para la gestión de la pagina
+            inicioRegistroUsuario();
+        });
+    </script>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>                        
+              </button>
+                <a class="navbar-brand-inline" id="logo" href="#myPage">
+                    <img src="img/favicon/favicon_png.png" alt="" style="width: 100px; height: 50px;"><br>Pedaleando MTB
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav" style="margin-top: 20px;">
+                    <li><a href="index.html"><span class="glyphicon glyphicon-home"></span> HOME</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Datos de Actividades<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="registroEjercicios.html">Registro Ejercicio</a></li>
+                            <li><a href="reportEjercicios.html">Listado ejercicios registrados</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="mejoraFisica.html"><span class="glyphicon glyphicon-bullhorn"></span> Indices de Mejora Física</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Datos de Pesos<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="registroPesos.html">Registro Peso</a></li>
+                            <li><a href="reportPesos.html">Listado pesos registrados</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="margin-top: 20px;">
+                    <ul id="userLogueado" class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> BIENVENIDO <strong id="user"></strong>!!<span id="id_usuario" class="ocultar"></span><br></a></li>
+                        <li><a href="#" id="btnSalir"><span class="glyphicon glyphicon-log-out"></span> SALIR</a></li>
+                    </ul>
+                    <ul id="loginEntradaUser" class="nav navbar-nav navbar-right">
+                        <li><a href="registroUsuario.html"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
+                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> ENTRAR</a></li>
+                    </ul>
+                </ul>
+            </div>
+    </nav>
+    <!-- FIN NAVBAR  -->
+
+    <!-- CONTENIDO PAGINA  -->
+    <main>
+        <!-- CONTENIDO PAGINA  -->
+        <div class="container">
+            <div class="row formGral">
+                <form id="formRegistro" action="" method="POST" class="form-horizontal formRegActividad" role="form">
+                    <div class="respServer" id="respServer">.</div>
+                    <div class="text-center">
+                        <h2>Alta Usuario</h2>
+                        <hr>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="usuario" class="control-label col-lg-4">*Nombre de usuario: </label>
+                        <div class="col-lg-7">
+                            <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Nombre de usuario" pattern="^[a-zA-Z][a-zA-Z_0-9áéíóúÁÉÍÓÚ \- ]+$" title="Admite letras, números y guiones" required="required">
+                            <span class="help-block" id="errUsuario "></span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pass" class="control-label col-lg-4">*Contraseña: </label>
+                        <div class="col-lg-7">
+                            <input type="password" name="pass" id="pass" class="form-control" placeholder="password" pattern="^[a-zA-Z_0-9áéíóúÁÉÍÓÚ \- \W]+$" title="Admite letras, números, caracteres especiales, guiones" required="required">
+                            <span class="help-block" id="errPass"></span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="control-label col-lg-4">*Correo electrónico: </label>
+                        <div class="col-lg-7">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="ej. pepe@gemail.com " pattern="/^[a-zA-Z_0-9]+\@[a-zA-Z_0-9]+\.[a-zA-Z]{2,3}$/" title="Formato: pepe@gemail.com. Admite letras, números, caracteres especiales, guiones" required="required">
+                            <span class="help-block" id="errEmail"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fnac" class="control-label col-lg-4">*Fecha Nacimiento: </label>
+                        <div class="col-lg-7">
+                            <input type="text" name="fnac" id="fnac" class="form-control" placeholder="dd-mm-aaaa" pattern="^\d{2}-\d{2}-\d{4}$" title="formato:dd-mm-aaaa" required="required">
+                            <span class="help-block" id="errFnac"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label " for="sexo">*Sexo:</label>
+                        <div class="col-sm-7">
+                            <label class="radio-inline ">
+                                    <input type="radio" name="sexo" id="sexoH" value="hombre" checked="checked">Hombre
+                                </label>
+                            <label class="radio-inline ">
+                                        <input type="radio" name="sexo" id="sexoM" value="mujer">Mujer
+                                </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="info" class="control-label col-lg-4"> </label>
+                        <div class="col-lg-7">
+                            <h6><i>* NOTA: Todos los campos son obligatorios</i></h6>
+                        </div>
+                    </div>
+
+                    <!--<div class="row form-group botonFormulario ">-->
+                    <div class="col-lg-12 col-lg-offset-3 inline">
+                        <div class="col-lg-6">
+                            <input type="submit" id="btnregistrar" value="Registra Usuario" class="btn btn-success ">
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="reset" id="btnborrar" value="Elimina datos" class="btn btn-danger ">
+                        </div>
+                        <!--<span id="mensajes"></span>-->
+                    </div><br>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!--  FOOTER  -->
+    <footer class="container-fluid text-center" style="padding-bottom: 30px;padding-top: 30px;">
+        <a href="#myPage" title="To Top">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+        <div class="rows">
+            <div class="col-lg-4 col-md-4">
+                <a href="index.html">
+                    <img src="img/favicon/favicon_png.png" alt="" style="width: 100px; height: 100px;" /><br>
+                    <h3 class="titulo-footer" style="text-align: center;">Pedaleando MTB</h3>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-2">
+                <h3 class="titulo-footer" style="text-align: left;"> Contactanos</h3>
+
+                <div class=" " style="text-align: left;">
+                    <a href="https://www.google.es/maps/place/Parque+Central/@40.6071678,-3.7095962,17z/data=!3m1!4b1!4m5!3m4!1s0xd43d502d7f151c3:0x12a4e4d6e452ac8a!8m2!3d40.6071637!4d-3.7074075"><span class="glyphicon glyphicon-map-marker"></span>Parque Central. Tres Cantos<br></a>
+
+                    <span class="glyphicon glyphicon-envelope "></span>
+                    <a href="mailto:info@Pedaleandomtb.com"> info@Pedaleandomtb.com</a>
+                    <br>
+                    <span class="glyphicon glyphicon-comment"></span>
+                    <a href="registroContacto.html">Contacto</a><br>
+                    <span class="glyphicon glyphicon-phone"> </span><a href="skype:echo123?call"> +34 686192177</a><br>
+                    <span class="glyphicon glyphicon-phone-alt"></span> +34 91 804 43 72
+
+                </div>
+            </div>
+            <!--  -->
+            <div class="col-lg-3 col-md-3">
+                <h3 class="titulo-footer" style="text-align: center;">Redes Sociales</h3>
+                <ul style="list-style-type:none">
+                    <li>
+                        <a href="#" class="col-lg-6"><span class="fa fa-facebook-square fa-3x"></span> </a>
+                        <a href="#" class="col-lg-6"><span class="fa fa-twitter-square fa-3x"></span> </a>
+                    </li>
+                    <li>
+                        <a href="#" class="col-lg-6"><span class="fa fa-instagram fa-3x" aria-hidden="true"></span> </a>
+                        <a href="#" class="col-lg-6"><span class="fa fa-youtube-square fa-3x" aria-hidden="true"></span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--  -->
+            <div class="col-lg-3 col-md-3">
+                <h3 class="titulo-footer" style="text-align: left;">Links útiles</h3>
+
+                <div class="col-lg-6" style="text-align: left;">
+                    <a href="politicaCookies.html "> <span class="glyphicon glyphicon-question-sign"></span> Política Cookies</a><br>
+                    <a href="politicaPrivacidad.html"><span class="glyphicon glyphicon-question-sign"></span>Política Privacidad</a><br>
+                    <a href="#mapaWeb" data-toggle="modal"><span class="glyphicon glyphicon-eye-open"></span> Mapa Web</a><br>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="rows">
+            <div class="col-lg-12">
+                <hr>
+                <p>Web Design & Development by Rosa María González Pérez, © Junio 2017, All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--  Ventana modal del mapa web -->
+    <div class="modal fade" id="mapaWeb" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Mapa web</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <h2></h2>
+                        <ul class="col-lg-5 col-lg-offset-2">
+                            <li><a href="index.html">Home </a></li>
+                            <br>
+                            <li><a href="registroEjercicios.html">Registro de Ejercicios</a></li>
+                            <li><a href="reportEjercicios.html">Listado de Ejercicios realizados</a></li>
+                            <br>
+                            <li><a href="registroPesos.html">Registro de Pesos</a></li>
+                            <li><a href="reportPesos.html">Listado de pesos registrados</a></li>
+                            <br>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="registroUsuario.html">Registrate</a></li>
+                            <br>
+                            <li><a href="registroContacto.html">Contacto</a></li>
+                            <li><a href="politicaCookies.html">Politica Cookies</a></li>
+                            <li><a href="politicaPrivacidad.html">Politica Privacidad</a></li>
+                            <li> <a href="#mapaWeb" data-toggle="modal">Mapa Web</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"> Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN MODAL mapa web -->
+</body>
+
+</html>

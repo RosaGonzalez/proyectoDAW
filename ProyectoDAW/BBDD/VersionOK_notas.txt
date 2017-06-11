@@ -1,0 +1,10 @@
+02/6/17. 
+
+permite validar campos del registro de nuevos clientes. 
+
+valida, php, html, js.
+
+inserta los datos en la bbdd.
+
+
+
